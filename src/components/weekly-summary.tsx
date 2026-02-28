@@ -15,7 +15,7 @@ interface WeeklySummaryProps {
   summary: GetSummaryResponse['summary']
 }
 
-export function Summary({ summary }: WeeklySummaryProps) {
+export function WeeklySummary({ summary }: WeeklySummaryProps) {
   const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
   const lastDayOfWeek = dayjs().endOf('week').format('D MMM')
 

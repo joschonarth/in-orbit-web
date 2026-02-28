@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { CreateGoal } from './components/create-goal'
 import { EmptyGoals } from './components/empty-goals'
-import { Summary } from './components/summary'
 import { Dialog } from './components/ui/dialog'
+import { WeeklySummary } from './components/weekly-summary'
 import { getSummary } from './http/get-summary'
 
 export function App() {
@@ -24,7 +24,7 @@ export function App() {
   return (
     <Dialog>
       {data.summary.total > 0 ? (
-        <Summary summary={data.summary} />
+        <WeeklySummary summary={data.summary} />
       ) : (
         <EmptyGoals />
       )}
