@@ -16,7 +16,7 @@ export function SignInWithGitHubCallback() {
     if (!code) return
 
     authenticateFromGitHub({ data: { code } }).then(response => {
-      const token = response.data.token
+      const token = response.token
       const cookies = new Cookies()
 
       cookies.set('in-orbit.token', token, {

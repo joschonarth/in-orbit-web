@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import ptBR from 'dayjs/locale/pt-BR'
 import { CheckCircle2, Plus } from 'lucide-react'
-import type { GetSummaryResponse } from '../http/get-summary'
+import type { GetWeekSummary200Summary } from '../http/generated/api'
 import { InOrbitIcon } from './in-orbit-icon'
 import { PendingGoals } from './pending-goals'
 import { Button } from './ui/button'
@@ -12,23 +12,23 @@ import { Separator } from './ui/separator'
 dayjs.locale(ptBR)
 
 interface WeeklySummaryProps {
-  summary: GetSummaryResponse['summary']
+  summary: GetWeekSummary200Summary
 }
 
 export function WeeklySummary({ summary }: WeeklySummaryProps) {
-  const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
-  const lastDayOfWeek = dayjs().endOf('week').format('D MMM')
+  const firstDayOfWeek = dayjs().startOf('week').format('D[ de ]MMM')
+  const lastDayOfWeek = dayjs().endOf('week').format('D[ de ]MMM')
 
-  const completedPercentage = Math.round(
-    (summary.completed * 100) / summary.total
-  )
+  const completedPercentage = summary.total
+    ? Math.round((summary.completed * 100) / summary.total)
+    : 0
 
   return (
     <div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <InOrbitIcon />
-          <span className="text-lg font-semibold capitalize">
+          <span className="text-lg font-semibold">
             {firstDayOfWeek} - {lastDayOfWeek}
           </span>
         </div>
@@ -42,7 +42,7 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Progress value={summary.completed} max={summary.total}>
+        <Progress value={summary.completed} max={summary.total ?? 0}>
           <ProgressIndicator style={{ width: `${completedPercentage}%` }} />
         </Progress>
 
@@ -77,7 +77,7 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
 
               <ul className="flex flex-col gap-3">
                 {goals.map(goal => {
-                  const time = dayjs(goal.createdAt).format('HH:mm[h]')
+                  const time = dayjs(goal.completedAt).format('HH:mm[h]')
 
                   return (
                     <li key={goal.id} className="flex items-center gap-2">
