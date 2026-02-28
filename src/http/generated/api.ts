@@ -118,6 +118,24 @@ export type GetUserExperienceAndLevel200 = {
   experienceToNextLevel: number;
 };
 
+/**
+ * @nullable
+ */
+export type DeleteGoal200 = typeof DeleteGoal200[keyof typeof DeleteGoal200] | null;
+
+
+export const DeleteGoal200 = {
+} as const;
+
+/**
+ * @nullable
+ */
+export type DeleteCompletion200 = typeof DeleteCompletion200[keyof typeof DeleteCompletion200] | null;
+
+
+export const DeleteCompletion200 = {
+} as const;
+
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
@@ -712,3 +730,141 @@ export function useGetUserExperienceAndLevel<TData = Awaited<ReturnType<typeof g
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+
+
+
+
+/**
+ * Delete a goal
+ */
+export const getDeleteGoalUrl = (goalId: string,) => {
+
+
+  
+
+  return `/goals/${goalId}`
+}
+
+export const deleteGoal = async (goalId: string, options?: RequestInit): Promise<DeleteGoal200> => {
+  
+  return http<DeleteGoal200>(getDeleteGoalUrl(goalId),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+  
+
+
+
+export const getDeleteGoalMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteGoal>>, TError,{goalId: string}, TContext>, request?: SecondParameter<typeof http>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteGoal>>, TError,{goalId: string}, TContext> => {
+
+const mutationKey = ['deleteGoal'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteGoal>>, {goalId: string}> = (props) => {
+          const {goalId} = props ?? {};
+
+          return  deleteGoal(goalId,requestOptions)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteGoalMutationResult = NonNullable<Awaited<ReturnType<typeof deleteGoal>>>
+    
+    export type DeleteGoalMutationError = unknown
+
+    export const useDeleteGoal = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteGoal>>, TError,{goalId: string}, TContext>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof deleteGoal>>,
+        TError,
+        {goalId: string},
+        TContext
+      > => {
+      return useMutation(getDeleteGoalMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Delete a goal completion
+ */
+export const getDeleteCompletionUrl = (goalCompletionId: string,) => {
+
+
+  
+
+  return `/completions/${goalCompletionId}`
+}
+
+export const deleteCompletion = async (goalCompletionId: string, options?: RequestInit): Promise<DeleteCompletion200> => {
+  
+  return http<DeleteCompletion200>(getDeleteCompletionUrl(goalCompletionId),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+  
+
+
+
+export const getDeleteCompletionMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCompletion>>, TError,{goalCompletionId: string}, TContext>, request?: SecondParameter<typeof http>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteCompletion>>, TError,{goalCompletionId: string}, TContext> => {
+
+const mutationKey = ['deleteCompletion'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteCompletion>>, {goalCompletionId: string}> = (props) => {
+          const {goalCompletionId} = props ?? {};
+
+          return  deleteCompletion(goalCompletionId,requestOptions)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteCompletionMutationResult = NonNullable<Awaited<ReturnType<typeof deleteCompletion>>>
+    
+    export type DeleteCompletionMutationError = unknown
+
+    export const useDeleteCompletion = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCompletion>>, TError,{goalCompletionId: string}, TContext>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof deleteCompletion>>,
+        TError,
+        {goalCompletionId: string},
+        TContext
+      > => {
+      return useMutation(getDeleteCompletionMutationOptions(options), queryClient);
+    }

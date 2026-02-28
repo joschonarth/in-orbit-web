@@ -1,8 +1,16 @@
+import { useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import ptBR from 'dayjs/locale/pt-BR'
 import { ArrowLeft, ArrowRight, CheckCircle2, Plus } from 'lucide-react'
 import { useSearchParams } from 'react-router-dom'
-import type { GetWeekSummary200Summary } from '../http/generated/api'
+import { toast } from 'sonner'
+import {
+  type GetWeekSummary200Summary,
+  getGetPendingGoalsQueryKey,
+  getGetUserExperienceAndLevelQueryKey,
+  getGetWeekSummaryQueryKey,
+  useDeleteCompletion,
+} from '../http/generated/api'
 import { InOrbitIcon } from './in-orbit-icon'
 import { PendingGoals } from './pending-goals'
 import { Button } from './ui/button'
@@ -19,6 +27,9 @@ interface WeeklySummaryProps {
 }
 
 export function WeeklySummary({ summary }: WeeklySummaryProps) {
+  const queryClient = useQueryClient()
+  const { mutateAsync: deleteCompletion } = useDeleteCompletion()
+
   const [searchParams, setSearchParams] = useSearchParams()
   const weekStartsAtParam = searchParams.get('week_starts_at')
 
@@ -53,6 +64,22 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
     )
 
     setSearchParams(params)
+  }
+
+  async function handleDeleteCompletion(goalCompletionId: string) {
+    try {
+      await deleteCompletion({ goalCompletionId })
+
+      queryClient.invalidateQueries({ queryKey: getGetWeekSummaryQueryKey() })
+      queryClient.invalidateQueries({ queryKey: getGetPendingGoalsQueryKey() })
+      queryClient.invalidateQueries({
+        queryKey: getGetUserExperienceAndLevelQueryKey(),
+      })
+
+      toast.success('Meta desfeita!')
+    } catch {
+      toast.error('Erro ao desfazer a meta, tente novamente!')
+    }
   }
 
   const isCurrentWeek = dayjs(weekStartsAt).endOf('week').isAfter(new Date())
@@ -147,6 +174,16 @@ export function WeeklySummary({ summary }: WeeklySummaryProps) {
                           <span className="text-zinc-100">{goal.title}</span>”
                           às <span className="text-zinc-100">{time}</span>
                         </span>
+
+                        {isCurrentWeek && (
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteCompletion(goal.id)}
+                            className="text-zinc-500 text-xs underline underline-offset-2 hover:text-zinc-300 transition-colors ml-1"
+                          >
+                            Desfazer
+                          </button>
+                        )}
                       </li>
                     )
                   })}
