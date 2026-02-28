@@ -31,19 +31,24 @@ type CreateGoalFormOutput = z.output<typeof createGoalForm>
 export function CreateGoal() {
   const queryClient = useQueryClient()
 
-  const { register, control, handleSubmit, formState, reset } = useForm<
-    CreateGoalFormInput,
-    unknown,
-    CreateGoalFormOutput
-  >({
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<CreateGoalFormInput, unknown, CreateGoalFormOutput>({
     resolver: zodResolver(createGoalForm),
   })
 
-  async function handleCreateGoal(data: CreateGoalFormOutput) {
+  async function handleCreateGoal({
+    title,
+    desiredWeeklyFrequency,
+  }: CreateGoalFormOutput) {
     try {
       await createGoal({
-        title: data.title,
-        desiredWeeklyFrequency: data.desiredWeeklyFrequency,
+        title,
+        desiredWeeklyFrequency,
       })
 
       queryClient.invalidateQueries({ queryKey: ['summary'] })
@@ -63,6 +68,7 @@ export function CreateGoal() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <DialogTitle>Cadastrar meta</DialogTitle>
+
             <DialogClose>
               <X className="size-5 text-zinc-600" />
             </DialogClose>
@@ -81,6 +87,7 @@ export function CreateGoal() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <Label htmlFor="title">Qual a atividade?</Label>
+
               <Input
                 id="title"
                 autoFocus
@@ -88,14 +95,14 @@ export function CreateGoal() {
                 {...register('title')}
               />
 
-              {formState.errors.title && (
-                <p className="text-red-400 text-sm">
-                  {formState.errors.title.message}
-                </p>
+              {errors.title && (
+                <p className="text-red-400 text-sm">{errors.title.message}</p>
               )}
             </div>
+
             <div className="flex flex-col gap-2">
               <Label htmlFor="title">Quantas vezes na semana?</Label>
+
               <Controller
                 control={control}
                 name="desiredWeeklyFrequency"
@@ -174,6 +181,7 @@ export function CreateGoal() {
                 Fechar
               </Button>
             </DialogClose>
+
             <Button className="flex-1">Salvar</Button>
           </div>
         </form>

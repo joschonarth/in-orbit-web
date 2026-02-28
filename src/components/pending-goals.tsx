@@ -7,18 +7,18 @@ import { OutlineButton } from './ui/outline-button'
 export function PendingGoals() {
   const queryClient = useQueryClient()
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['pending-goals'],
     queryFn: getPendingGoals,
     staleTime: 1000 * 60, // 60 seconds
   })
 
-  if (!data) {
+  if (isLoading || !data) {
     return null
   }
 
   async function handleCompleteGoal(goalId: string) {
-    await createGoalCompletion(goalId)
+    await createGoalCompletion({ goalId })
 
     queryClient.invalidateQueries({ queryKey: ['summary'] })
     queryClient.invalidateQueries({ queryKey: ['pending-goals'] })
@@ -26,7 +26,7 @@ export function PendingGoals() {
 
   return (
     <div className="flex flex-wrap gap-3">
-      {data.map(goal => {
+      {data.pendingGoals.map(goal => {
         return (
           <OutlineButton
             key={goal.id}
