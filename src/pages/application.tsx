@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
-import { CreateGoal } from './components/create-goal'
-import { EmptyGoals } from './components/empty-goals'
-import { Dialog } from './components/ui/dialog'
-import { WeeklySummary } from './components/weekly-summary'
-import { getSummary } from './http/get-summary'
+import { CreateGoal } from '../components/create-goal'
+import { EmptyGoals } from '../components/empty-goals'
+import { Dialog } from '../components/ui/dialog'
+import { WeeklySummary } from '../components/weekly-summary'
+import { getSummary } from '../http/get-summary'
 
-export function App() {
+export function Application() {
   const { data, isLoading } = useQuery({
     queryKey: ['summary'],
     queryFn: getSummary,

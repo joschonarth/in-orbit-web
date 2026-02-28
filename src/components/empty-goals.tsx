@@ -6,7 +6,7 @@ import { DialogTrigger } from './ui/dialog'
 
 export function EmptyGoals() {
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-8">
+    <main className="h-screen flex flex-col items-center justify-center gap-8">
       <img src={logo} alt="in.orbit" />
 
       <img
@@ -25,6 +25,6 @@ export function EmptyGoals() {
           Cadastrar meta
         </Button>
       </DialogTrigger>
-    </div>
+    </main>
   )
 }
