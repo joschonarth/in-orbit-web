@@ -114,7 +114,7 @@ export function CreateGoal() {
               <Controller
                 control={control}
                 name="desiredWeeklyFrequency"
-                defaultValue={3}
+                defaultValue={5}
                 render={({ field }) => {
                   return (
                     <RadioGroup
@@ -158,7 +158,7 @@ export function CreateGoal() {
                         <span className="text-zinc-300 text-sm font-medium leading-none">
                           5x na semana
                         </span>
-                        <span className="text-lg leading-none">🤨</span>
+                        <span className="text-lg leading-none">🤩</span>
                       </RadioGroupItem>
 
                       <RadioGroupItem value="6">
