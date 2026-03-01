@@ -6,9 +6,9 @@
 
 *Registre metas, acompanhe seu progresso e evolua semana a semana.*
 
-<img src="https://img.shields.io/github/last-commit/joschonarth/in-orbit-web?style=default&logo=git&logoColor=white&color=8b5cf6&labelColor=27272a" alt="last-commit">
-<img src="https://img.shields.io/github/languages/top/joschonarth/in-orbit-web?style=default&color=8b5cf6&labelColor=27272a" alt="repo-top-language">
-<img src="https://img.shields.io/github/languages/count/joschonarth/in-orbit-web?style=default&color=8b5cf6&labelColor=27272a" alt="repo-language-count">
+<img src="https://img.shields.io/github/last-commit/joschonarth/in-orbit-web?style=for-the-badge&logo=git&logoColor=white&color=8b5cf6&labelColor=27272a" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/joschonarth/in-orbit-web?style=for-the-badge&color=F67986&labelColor=27272a" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/joschonarth/in-orbit-web?style=for-the-badge&color=F38856&labelColor=27272a" alt="repo-language-count">
 
 ---
 
@@ -18,6 +18,10 @@
 🚀 [Como rodar](#como-rodar)
 
 </div>
+
+---
+
+<img width="1365" height="767" alt="summary" src="https://github.com/user-attachments/assets/379c1586-ed40-4353-a94e-a00faedf33e7" />
 
 ---
 
