@@ -12,10 +12,10 @@
 
 ---
 
-📃 [Sobre](#sobre)&nbsp;&nbsp;•&nbsp;&nbsp;
-🛠️ [Tecnologias](#tecnologias)&nbsp;&nbsp;•&nbsp;&nbsp;
-✨ [Funcionalidades](#funcionalidades)&nbsp;&nbsp;•&nbsp;&nbsp;
-🚀 [Como rodar](#como-rodar)
+📃 [Sobre](#-sobre)&nbsp;&nbsp;•&nbsp;&nbsp;
+🛠️ [Tecnologias](#-tecnologias)&nbsp;&nbsp;•&nbsp;&nbsp;
+✨ [Funcionalidades](#-funcionalidades)&nbsp;&nbsp;•&nbsp;&nbsp;
+🚀 [Como rodar](#-como-rodar)
 
 </div>
 
