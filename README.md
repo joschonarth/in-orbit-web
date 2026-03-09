@@ -2,7 +2,7 @@
 
 <img height="160" alt="in.orbit" src="/public/icon.svg" />
 
-# in.orbit
+# 🧑‍🚀 in.orbit
 
 *Registre metas, acompanhe seu progresso e evolua semana a semana.*
 
