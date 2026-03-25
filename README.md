@@ -69,7 +69,7 @@ O **in.orbit** é uma aplicação web para criação e acompanhamento de metas c
 
 - 🟩 [Node.js 18+](https://nodejs.org/)
 - 📦 [npm](https://www.npmjs.com/)
-- 🔌 API do **in.orbit** em execução — veja o repositório: **[in.orbit-server](https://github.com/joschonarth/in.orbit-server)**
+- 🔌 API do **in.orbit** em execução — veja o repositório: **[in-orbit-server](https://github.com/joschonarth/in-orbit-server)**
 
 ### 🔧 Instalação
 
@@ -107,7 +107,7 @@ O **in.orbit** é uma aplicação web para criação e acompanhamento de metas c
 
 Este projeto consome a **in.orbit API**, que precisa estar disponível para que a aplicação funcione corretamente. Siga as instruções do repositório abaixo para rodá-la:
 
-👉 **[Servidor do in.orbit](https://github.com/joschonarth/in.orbit-server)**
+👉 **[Servidor do in.orbit](https://github.com/joschonarth/in-orbit-server)**
 
 ### 🤖 Geração de cliente HTTP
 
